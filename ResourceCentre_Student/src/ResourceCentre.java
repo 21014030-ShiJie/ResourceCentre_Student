@@ -161,9 +161,8 @@ public class ResourceCentre {
 		ResourceCentre.setHeader("CHROMEBOOK LIST");
 		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION",
 				"AVAILABLE", "DUE DATE","OS");
-		 output += retrieveAllChromebook(chromebookList);	
+		output = retrieveAllChromebook(chromebookList);
 		System.out.println(output);
-
 	}
 
 	//================================= Option 2 Add an item (CRUD - Create) =================================
@@ -183,13 +182,13 @@ public class ResourceCentre {
 	}
 	
 	public static Chromebook inputChromebook() {	
-		
+		//Chromebook cb =null;
 		// write your code here
-		String assertTag = Helper.readString("Enter asset tag > ");
+		String tag = Helper.readString("Enter asset tag > ");
 		String description = Helper.readString("Enter description > ");
-		String os = Helper.readString("Enter os > ");
-
-		Chromebook cb= new Chromebook(assertTag, description, os);
+		String os = Helper.readString("Enter optical os > ");
+		
+		Chromebook cb = new Chromebook(tag, description,os);
 		return cb;
 		
 	}	
@@ -240,7 +239,6 @@ public class ResourceCentre {
 				chromebookList.get(i).setDueDate(dueDate);
 				
 				isLoaned = true;
-				
 			}
 		}
 		return isLoaned;
@@ -296,7 +294,6 @@ public class ResourceCentre {
 				chromebookList.get(i).setIsAvailable(true);
 				chromebookList.get(i).setDueDate("");
 				isReturned = true;
-				
 			}
 		}
 		return isReturned;
@@ -304,16 +301,16 @@ public class ResourceCentre {
 	public static void returnChromebook(ArrayList<Chromebook> chromebookList) {
 		// write your code here
 		ResourceCentre.viewAllChromebook(chromebookList);
-		String assertTag = Helper.readString("Enter asset tag > ");
-		Boolean isReturned = doReturnChromebook(chromebookList, assertTag);
+		String tag = Helper.readString("Enter asset tag > ");
+		Boolean isReturned = doReturnChromebook(chromebookList, tag);
 		
 		if (isReturned == false) {
 			System.out.println("Invalid asset tag");
 		} else {
-			System.out.println("Chromebook " + assertTag + " returned");
+			System.out.println("Chromebook " + tag + " returned");
 		}
+	
 	}
+
+
 }
-
-
-
